@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using HomeBookkeping.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.EntityFrameworkCore;
+
 
 namespace HomeBookkeping.Controllers
 {
@@ -17,9 +19,13 @@ namespace HomeBookkeping.Controllers
         {
             db = user;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            if (db.Operations != null)
+            {
 
+                return View(await db.Operations.ToListAsync());
+            }
             return View();
         }
         [HttpGet]
@@ -28,11 +34,11 @@ namespace HomeBookkeping.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult AddOperation(Operation operation)
+        public async Task<IActionResult> AddOperation(Operation operation)
         {
             db.Operations.Add(operation);
-            db.SaveChanges();
-            return Index();
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
         
     }
