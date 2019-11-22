@@ -9,6 +9,7 @@ namespace HomeBookkeping.Models
     public class UserContext:DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<Operation> Operations { get; set; }
         public UserContext(DbContextOptions<UserContext> options)
             : base(options)
         {

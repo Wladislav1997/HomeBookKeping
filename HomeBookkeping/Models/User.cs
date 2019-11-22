@@ -9,6 +9,8 @@ namespace HomeBookkeping.Models
     {
        public string Email { get; set; }
        public string Password { get; set; }
-        public int Id { get; set; }
+       public int Id { get; set; }
+
+       public List<Operation> Operations { get; set; }
     }
 }
