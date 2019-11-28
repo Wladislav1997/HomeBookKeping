@@ -24,10 +24,14 @@
             <input type="number" asp-for="Sum" class="form-control" />
         </div>
         <div class="form-group">
+            <label asp-for="Data" class="control-label">Дата</label>
+            <input type="datetime-local" asp-for="Data" class="form-control" />
+        </div>
+        <div class="form-group">
             <label asp-for="Coment" class="control-label">Комент</label>
             <input type="text" asp-for="Coment" class="form-control" />
         </div>
-        
+
         <div class="form-group">
             <input type="submit" value="Сохранить" class="btn btn-default" />
         </div>
