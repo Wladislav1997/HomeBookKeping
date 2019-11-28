@@ -19,14 +19,10 @@ namespace HomeBookkeping.Controllers
         {
             db = user;
         }
-        public async Task<IActionResult> Index()
+        public IActionResult Index()
         {
-            if (db.Operations != null)
-            {
-
-                return View(await db.Operations.ToListAsync());
-            }
-            return View();
+            var operations = db.Operations.Include(c => c.User);
+            return View( operations.ToList());
         }
         [HttpGet]
        public IActionResult AddOperation()
@@ -34,10 +30,10 @@ namespace HomeBookkeping.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> AddOperation(Operation operation)
+        public IActionResult AddOperation(Operation operation)
         {
             db.Operations.Add(operation);
-            await db.SaveChangesAsync();
+            db.SaveChanges();
             return RedirectToAction("Index");
         }
         

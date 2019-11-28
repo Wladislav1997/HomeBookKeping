@@ -61,7 +61,7 @@ namespace HomeBookkeping.Controllers
 
                     await Authenticate(model.Email); // аутентификация
 
-                    return RedirectToAction("Acccount", "Login");
+                    return RedirectToAction("Login", "Account");
                 }
                 else
                     ModelState.AddModelError("", "Некорректные логин и(или) пароль");
