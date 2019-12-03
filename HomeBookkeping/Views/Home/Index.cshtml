@@ -1,18 +1,19 @@
-﻿@model IEnumerable<HomeBookkeping.Models.Operation>
+﻿@*@model IEnumerable<HomeBookkeping.Models.Operation>*@
 @{
     ViewBag.Title = "Все смартфоны";
 }
 
-<div>
-    <div><a asp-action="AddOperation" asp-controller="Home">Добавить Операцию</a></div>
     <div>
+        <div><a asp-action="AddOperation" asp-controller="Home">Добавить Операцию</a></div>
+        <div><a asp-action="Filter" asp-controller="Home">Поиск</a></div>
+        <div>
 
-        <table class="table">
-            <tr><td>Название</td><td>Действие</td><td>Тип</td><td>Вид</td><td>Сумма</td><td>Комент</td></tr>
-            @foreach (var item in Model)
-            {
-              <tr><td>@item.Name</td><td>@item.Action</td><td>@item.Type</td><td>@item.View</td><td>@item.Sum</td><td>@item.Coment</td></tr>
-            }
-        </table>
+            <table class="table">
+                <tr><td>Название</td><td>Действие</td><td>Тип</td><td>Вид</td><td>Сумма</td><td>Комент</td></tr>
+                @foreach (var item in Model)
+                {
+                    <tr><td>@item.Name</td><td>@item.Action</td><td>@item.Type</td><td>@item.View</td><td>@item.Sum</td><td>@item.Coment</td></tr>
+                }
+            </table>
+        </div>
     </div>
-</div>

@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using HomeBookkeping.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
+using HomeBookkeping.ViewModels;
 
 
 namespace HomeBookkeping.Controllers
@@ -22,7 +23,7 @@ namespace HomeBookkeping.Controllers
         public IActionResult Index()
         {
             var operations = db.Operations.Include(c => c.User);
-            return View( operations.ToList());
+            return View(operations.ToList());
         }
         [HttpGet]
        public IActionResult AddOperation()
@@ -35,6 +36,21 @@ namespace HomeBookkeping.Controllers
             db.Operations.Add(operation);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+       
+        public IActionResult Filter(Operation operation)
+        {
+            var oper = db.Operations.Include(c => c.User).ToList();
+            List<Operation> op = new List<Operation>();
+            for (int i = 0; i < oper.Count; i++)
+            {
+                if (operation.Name == oper[i].Name | operation.Action == oper[i].Action | operation.Type == oper[i].Type | operation.View == oper[i].View | operation.Sum == oper[i].Sum | operation.Coment == oper[i].Coment)
+                {
+                    op.Add(oper[i]);
+                }
+
+            }
+            return View(op.ToList());
         }
         
     }
