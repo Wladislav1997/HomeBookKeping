@@ -13,6 +13,10 @@
                 <input type="text" class="form-control" name="Name">
             </div>
             <div class="form-group">
+                <label>Дата</label>
+                <input type="datetime-local" class="form-control" name="Data">
+            </div>
+            <div class="form-group">
                 <label>Действие</label>
                 <input type="text" class="form-control" name="Action">
             </div>
@@ -37,10 +41,10 @@
     </div>
     <div>
         <table class="table">
-            <tr><td>Название</td><td>Действие</td><td>Тип</td><td>Вид</td><td>Сумма</td><td>Комент</td></tr>
+            <tr><td>Название</td><td>Дата</td><td>Действие</td><td>Тип</td><td>Вид</td><td>Сумма</td><td>Комент</td></tr>
             @foreach (var i in Model)
             {
-                <tr><td>@i.Name</td><td>@i.Action</td><td>@i.Type</td><td>@i.View</td><td>@i.Sum</td><td>@i.Coment</td></tr>
+                <tr><td>@i.Name</td><td>@i.Data</td><td>@i.Action</td><td>@i.Type</td><td>@i.View</td><td>@i.Sum</td><td>@i.Coment</td></tr>
             }
         </table>
     </div>

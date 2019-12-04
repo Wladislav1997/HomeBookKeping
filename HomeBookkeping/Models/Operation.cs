@@ -13,8 +13,8 @@ namespace HomeBookkeping.Models
         public string Action { get; set; }
         public string Type { get; set; }
         public string View { get; set; }
-        public decimal Sum { get; set; }
-        //public DateTime Data { get; set; }
+        public decimal? Sum { get; set; }
+        public DateTime Data { get; set; }
         public string Coment { get; set; }
 
         public int? UserId { get; set; }

@@ -12,5 +12,9 @@ namespace HomeBookkeping.Models
        public int Id { get; set; }
 
        public List<Operation> Operations { get; set; }
+        public User()
+        {
+            Operations = new List<Operation>();
+        }
     }
 }

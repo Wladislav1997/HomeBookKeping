@@ -22,7 +22,7 @@ namespace HomeBookkeping.Controllers
         }
         public IActionResult Index()
         {
-            var operations = db.Operations.Include(c => c.User);
+            var operations = db.Users.Include(c => c.Operations);
             return View(operations.ToList());
         }
         [HttpGet]
@@ -37,21 +37,42 @@ namespace HomeBookkeping.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-       
+
         public IActionResult Filter(Operation operation)
         {
             var oper = db.Operations.Include(c => c.User).ToList();
             List<Operation> op = new List<Operation>();
             for (int i = 0; i < oper.Count; i++)
             {
-                if (operation.Name == oper[i].Name | operation.Action == oper[i].Action | operation.Type == oper[i].Type | operation.View == oper[i].View | operation.Sum == oper[i].Sum | operation.Coment == oper[i].Coment)
+                if (operation.Name == oper[i].Name | operation.Name == null)
                 {
-                    op.Add(oper[i]);
+
+                    if (operation.Data == oper[i].Data | operation.Data == null)
+                    {
+                        if (operation.Action == oper[i].Action | operation.Action == null)
+                        {
+                            if (operation.Type == oper[i].Type | operation.Type == null)
+                            {
+                                if (operation.View == oper[i].View | operation.View == null)
+                                {
+                                    if (operation.Sum == oper[i].Sum | operation.Sum == null)
+                                    {
+                                        if (operation.Coment == oper[i].Coment | operation.Coment == null)
+                                        {
+                                            op.Add(oper[i]);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
 
             }
             return View(op.ToList());
         }
-        
+
+
+
     }
 }
