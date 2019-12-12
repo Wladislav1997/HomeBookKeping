@@ -45,12 +45,11 @@ namespace HomeBookkeping.Controllers
         {
             IQueryable<Operation> oper = db.Operations.Include(c => c.User);
             oper = oper.Where(p => p.User.Email == User.Identity.Name);
-            oper = oper.Where(p => p.Action == operation.Action);
-            
+            oper = oper.Where(a => a.NameAct == operation.NameAct);
             //if (operation.Name != null)
             //{
             //    oper = oper.Where(a => a.Name == operation.Name);
-                 
+
             //    if (operation.Data != null)
             //    {
             //        oper = oper.Where(a => a.Data == operation.Data);
