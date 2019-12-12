@@ -3,13 +3,16 @@
     ViewBag.Title = "Добавление Операции";
 }
     <form asp-action="AddOperation" asp-controller="home">
+        <div >
+           <input type="hidden" asp-for="User.Email" value=@User.Identity.Name />
+        </div>
         <div class="form-group">
             <label asp-for="Name" class="control-label">Название</label>
             <input type="text" asp-for="Name" class="form-control" />
         </div>
         <div class="form-group">
             <label asp-for="Data" class="control-lebel">Дата</label>
-            <input type="datetime-local" asp-for="Data" class="form-control"/>
+            <input type="datetime-local" asp-for="Data" class="form-control" />
         </div>
         <div class="form-group">
             <label asp-for="Action" class="control-label">Действие</label>
