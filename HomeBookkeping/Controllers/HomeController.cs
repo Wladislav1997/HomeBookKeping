@@ -30,6 +30,8 @@ namespace HomeBookkeping.Controllers
         [HttpGet]
        public IActionResult AddOperation()
         {
+            ViewBag.Type = new List<string> { "разово", "переодически" };
+            ViewBag.NameAct = new List<string> { "доход", "расход" };
             return View();
         }
         [HttpPost]

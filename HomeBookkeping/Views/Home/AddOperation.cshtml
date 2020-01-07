@@ -2,31 +2,31 @@
 @{
     ViewBag.Title = "Добавление Операции";
 }
-    <form asp-action="AddOperation" asp-controller="home">
-        <div >
-           <input type="hidden" asp-for="User.Email" value=@User.Identity.Name />
+<div>
+    <form asp-action="AddOperation" asp-controller="home" id="Form1">
+        <div>
+            <input type="hidden" asp-for="User.Email" value=@User.Identity.Name />
         </div>
         <div class="form-group">
             <label asp-for="Name" class="control-label">Название</label>
             <input type="text" asp-for="Name" class="form-control" />
         </div>
         <div class="form-group">
-            <label asp-for="Data" class="control-lebel">Дата</label>
-            <input type="datetime-local" asp-for="Data" class="form-control" />
-        </div>
-        <div class="form-group">
             <label asp-for="NameAct" class="control-label">Действие</label>
-            <input type="text" asp-for="NameAct" class="form-control" />
+            <select name="NameAct" class="form-control">
+                <option value="расход">расход</option>
+                <option value="доход">доход</option>
+            </select>
         </div>
         <div class="form-group">
             <label asp-for="Type" class="control-label">Тип</label>
-            <input type="text" asp-for="Type" class="form-control" />
+            <select name="Type" class="form-control" id="selecttype">
+                <option value="one">разово</option>
+                <option value="period">периодически</option>
+            </select>
         </div>
-        <div class="form-group">
-            <label asp-for="View" class="control-label">Вид</label>
-            <input type="text" asp-for="View" class="form-control" />
-        </div>
-        <div class="form-group">
+        
+        <div class="form-group" id="divsum">
             <label asp-for="Sum" class="control-label">Сумма</label>
             <input type="number" asp-for="Sum" class="form-control" />
         </div>
@@ -39,3 +39,50 @@
             <input type="submit" value="Сохранить" class="btn btn-default" />
         </div>
     </form>
+</div>
+<script>
+    var languagesSelect = document.getElementById("selecttype");
+
+    function changeOption() {
+
+        var selectedOption = languagesSelect.options[languagesSelect.selectedIndex].value;
+        if (selectedOption === "period") {
+            var form1 = document.getElementById("Form1");
+
+            var elem2 = document.createElement("div");
+            elem2.setAttribute("class", "form-control")
+
+             var elem5 = document.createElement("div");
+            elem2.setAttribute("class", "form-control")
+
+            var elem = document.createElement("label");
+            elem.innerHTML = "Дата начала периода";
+            elem.setAttribute("for", "inputinp");
+            elem.setAttribute("class", "control-label");
+
+            var elem1 = document.createElement("input");
+            elem1.setAttribute("type", "datetime-local");
+            elem1.setAttribute("class", "form-control");
+            elem1.setAttribute("name", "Data1");
+            elem1.setAttribute("id", "inputinp");
+
+             var elem3 = document.createElement("label");
+            elem3.setAttribute("class", "control-label");
+            elem3.innerHTML = "Дата начала периода";
+
+            var elem4 = document.createElement("input");
+            elem4.setAttribute("type", "datetime-local");
+            elem4.setAttribute("class", "form-control");
+            elem4.setAttribute("name", "Data2");
+
+            elem2.appendChild(elem);
+            elem2.appendChild(elem1);
+            form1.appendChild(elem2);
+        }
+        else {
+
+        }
+    }
+
+    languagesSelect.addEventListener("change", changeOption);
+</script>
